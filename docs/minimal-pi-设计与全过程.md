@@ -140,16 +140,16 @@ cd /root/projects/minimal-pi
 export DEEPSEEK_API_KEY=sk-...
 
 # print 模式（跑完输出最终回答）
-python3 minimal_pi/cli.py -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+python3 -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
 
 # 简易交互模式
-python3 minimal_pi/cli.py
+python3 -m minimal_pi
 
 # 换模型/端点（任何 OpenAI 兼容）
-python3 minimal_pi/cli.py -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
+python3 -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
 
 # 调试：看每轮工具调用
-python3 minimal_pi/cli.py -p "..." --verbose
+python3 -m minimal_pi -p "..." --verbose
 ```
 
 ---
@@ -314,8 +314,8 @@ python3 minimal_pi/cli.py -p "..." --verbose
   [tool read] 1	LINE ONE ...
   [assistant] stop=end_turn  输出最终回答
   ```
-- `python -m minimal_pi` 缺 `__main__.py` → 补上；PYTHONPATH 方式被安全策略
-  标记 → 改用直接 `python3 minimal_pi/cli.py`（README 已写此用法）
+- `python -m minimal_pi` 缺 `__main__.py` → 补上；走 `-m` 入口（直接 `python3 minimal_pi/cli.py`
+  因绝对 import 找不到 `minimal_pi` 包，README 用法纠正为 `python3 -m minimal_pi`）
 
 ## 阶段 5：行号抽查验证 + 文档 + 提交
 

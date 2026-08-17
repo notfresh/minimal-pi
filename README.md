@@ -21,16 +21,16 @@ cd /root/projects/minimal-pi
 export DEEPSEEK_API_KEY=sk-...
 
 # print 模式：跑完输出最终回答
-python3 minimal_pi/cli.py -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+python3 -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
 
 # 简易交互模式
-python3 minimal_pi/cli.py
+python3 -m minimal_pi
 
 # 换模型 / 换端点（任何 OpenAI 兼容）
-python3 minimal_pi/cli.py -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
+python3 -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
 
 # 看每轮工具调用（调试）
-python3 minimal_pi/cli.py -p "..." --verbose
+python3 -m minimal_pi -p "..." --verbose
 ```
 
 依赖：仅 `openai`（Python 3.9+）。默认模型 `deepseek-chat`。

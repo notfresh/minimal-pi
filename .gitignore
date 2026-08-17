@@ -1,9 +1,22 @@
-# Python 字节码缓存
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-
-# 虚拟环境
+*.egg-info/
 .venv/
 venv/
 env/
+
+# Build / dist
+build/
+dist/
+*.whl
+
+# 运行时/数据
+.python-version
+*.log
+.pytest_cache/
+
+# IDE / 编辑器
+.idea/
+.vscode/
+.DS_Store

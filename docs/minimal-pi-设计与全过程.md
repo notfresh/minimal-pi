@@ -137,19 +137,35 @@ ConversationLoop.run ────────────────┐   内�
 
 ```bash
 cd /root/projects/minimal-pi
+
+# 1) 准备环境（首次 / 依赖更新时跑一次；用 uv 隔离到 .venv）
+uv sync
+
+# 2) 配 key
 export DEEPSEEK_API_KEY=sk-...
 
+# 3) 跑（必须走 venv 里的 python，不然找不到 openai）
+.venv/bin/python -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+
+# 或激活 venv 后用普通 python
+# source .venv/bin/activate
+# python -m minimal_pi
+```
+
+常用模式：
+
+```bash
 # print 模式（跑完输出最终回答）
-python3 -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+.venv/bin/python -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
 
 # 简易交互模式
-python3 -m minimal_pi
+.venv/bin/python -m minimal_pi
 
 # 换模型/端点（任何 OpenAI 兼容）
-python3 -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
+.venv/bin/python -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
 
 # 调试：看每轮工具调用
-python3 -m minimal_pi -p "..." --verbose
+.venv/bin/python -m minimal_pi -p "..." --verbose
 ```
 
 ---

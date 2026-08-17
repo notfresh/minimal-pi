@@ -18,22 +18,40 @@ Pi 的核心 = **极简系统提示词（工具只列一行 snippet）+ 双循�
 
 ```bash
 cd /root/projects/minimal-pi
+
+# 1) 准备环境（首次 / 依赖更新时跑一次；用 uv 隔离到 .venv）
+uv sync
+
+# 2) 配 key
 export DEEPSEEK_API_KEY=sk-...
 
-# print 模式：跑完输出最终回答
-python3 -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+# 3) 跑（必须走 venv 里的 python，不然找不到 openai）
+.venv/bin/python -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
 
-# 简易交互模式
-python3 -m minimal_pi
-
-# 换模型 / 换端点（任何 OpenAI 兼容）
-python3 -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
-
-# 看每轮工具调用（调试）
-python3 -m minimal_pi -p "..." --verbose
+# 或激活 venv 后用普通 python
+# source .venv/bin/activate
+# python -m minimal_pi
 ```
 
-依赖：仅 `openai`（Python 3.9+）。默认模型 `deepseek-chat`。
+常用模式：
+
+```bash
+# print 模式：跑完输出最终回答
+.venv/bin/python -m minimal_pi -p "看看当前目录有什么文件，读一下 README 开头" --cwd /path/to/dir
+
+# 简易交互模式
+.venv/bin/python -m minimal_pi
+
+# 换模型 / 换端点（任何 OpenAI 兼容）
+.venv/bin/python -m minimal_pi -p "hi" --model gpt-4o-mini --base-url https://api.openai.com/v1
+
+# 看每轮工具调用（调试）
+.venv/bin/python -m minimal_pi -p "..." --verbose
+```
+
+
+
+依赖：`pyproject.toml` 声明，仅 `openai`（Python 3.10+）。默认模型 `deepseek-chat`。
 
 ## 行为示例（真实 API，2026-08-16）
 

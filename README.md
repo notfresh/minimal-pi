@@ -17,7 +17,8 @@ Pi 的核心 = **极简系统提示词（工具只列一行 snippet）+ 双循�
 ## 快速开始
 
 ```bash
-cd /root/projects/minimal-pi
+# 先进入你下载 / 解压 / 克隆 minimal-pi 后的目录
+cd /path/to/minimal-pi
 
 # 1) 准备环境（首次 / 依赖更新时跑一次；用 uv 隔离到 .venv）
 uv sync
